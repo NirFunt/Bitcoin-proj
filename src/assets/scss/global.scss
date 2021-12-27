@@ -1,0 +1,24 @@
+//SETUP
+@import "./setup/functions";
+@import "./setup/mixins";
+@import "./setup/typography";
+@import "./setup/variables";
+
+//BASICS
+@import "./basics/base";
+@import "./basics/helpers";
+@import "./basics/layout";
+
+//CMPS
+@import './cmps/app-header';
+@import './cmps//app-footer';
+@import './cmps/contact-list';
+@import './cmps/contact-filter';
+
+
+// VIEWS
+@import './views/home-page';
+@import './views/contact-page';
+@import './views/contact-details-page';
+@import './views/contact-edit-page';
+@import './views/chart-page';

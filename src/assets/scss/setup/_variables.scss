@@ -1,0 +1,28 @@
+
+// COLOR PALETTE
+$clr1: #ce2e6c;
+$clr2: #504658;
+$clr3: #ffb5b5;
+$clr4: #f0decb;
+$clr5: #fff;
+
+
+// ANOTHER COLOR PALETTE
+// https://colorhunt.co/palette/b983ff94b3fd94daff99feff
+$clr6: #B983FF;
+$clr7: #94B3FD;
+$clr8: #94DAFF;
+$clr9: #99FEFF;
+$clr10: #fff;
+
+// LAYOUT
+$layoutPadding: 20px;
+
+// LAYOUT BREAKPOINTS
+$break-narrow: 460px;
+$break-normal: 640px;
+$break-wide: 960px;
+
+$padded-break-narrow: $break-narrow + $layoutPadding * 2;
+$padded-break-normal: $break-normal + $layoutPadding * 2;
+$padded-break-wide: $break-wide + $layoutPadding * 2;

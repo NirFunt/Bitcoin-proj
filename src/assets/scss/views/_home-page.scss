@@ -1,0 +1,12 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    min-height: 90vh;
+    // background-color: lightsteelblue;
+    img {
+        width: 20%;
+    }
+}

@@ -1,0 +1,14 @@
+.chart-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    min-height: 90vh;
+    margin-block: 60px;
+    // background-color: lightsteelblue;
+    > * {
+        width: 80vw;
+        height: 50vh;
+    }
+}

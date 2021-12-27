@@ -1,0 +1,18 @@
+.app-header {
+    height: 5vh;
+    background-color: $clr3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+        margin-inline: 20px;
+    }
+    a {
+        cursor: pointer;
+        &:hover {
+            transition: 0.5s;
+            color: $clr5;
+        }
+        }
+      
+}

@@ -1,0 +1,38 @@
+.main-layout {
+    // FOR MOBILE LAYOUT - FROM MOBILE TO DESKTOP
+    display: grid;
+    grid-template-columns: $layoutPadding 1fr $layoutPadding;
+
+    > * {
+        grid-column: 2;
+    }
+
+    > *.full {
+        grid-column: 1 / -1;
+    }
+
+    @include for-narrow-layout {
+      grid-template-columns:
+      minmax($layoutPadding, 1fr)
+      minmax(auto, $break-narrow)
+      minmax($layoutPadding, 1fr);
+    }
+    
+    @include for-normal-layout {
+        grid-template-columns:
+        minmax($layoutPadding, 1fr)
+        minmax(auto, $break-normal)
+        minmax($layoutPadding, 1fr);
+    }
+    
+    @include for-wide-layout {
+        grid-template-columns:
+        minmax($layoutPadding, 1fr)
+        minmax(auto, $break-wide)
+        minmax($layoutPadding, 1fr);
+    }
+}
+
+
+
+
