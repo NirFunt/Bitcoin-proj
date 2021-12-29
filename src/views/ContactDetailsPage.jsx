@@ -8,7 +8,7 @@ import { MoveList } from '../cmps/MoveList';
 import { connect } from 'react-redux';
 import { getContactById } from '../store/actions/contactActions';
 
- class _ContactDetailsPage extends Component {
+class _ContactDetailsPage extends Component {
 
     state = {
         contact: null,
@@ -32,10 +32,15 @@ import { getContactById } from '../store/actions/contactActions';
     }
 
     async loadContact() {
-        const contact =  await this.props.getContactById(this.props.match.params.id);
+        const contact = await this.props.getContactById(this.props.match.params.id);
         this.setState({ contact })
     }
 
+    addMove = (contact,amount) => {
+        userService.addMove(contact,amount);
+        this.props.history.push('/contact');
+        window.scrollTo(0, 0);
+    }
 
     render() {
         const { contact, loggedinUser } = this.state;
@@ -46,7 +51,7 @@ import { getContactById } from '../store/actions/contactActions';
                 <h3> 🧍‍♂️ Name:  {contact.name} </h3>
                 <h3> 📩 Email: {contact.email} </h3>
                 <h3> 📞Phone:  {contact.phone} </h3>
-                <TransferFund contact={contact} addMove={userService.addMove} />
+                <TransferFund contact={contact} addMove={this.addMove} />
                 <MoveList loggedinUser={loggedinUser} contact={contact} />
                 <Link to={'/contact'}>Go Back</Link>
             </section>

@@ -5,10 +5,11 @@
     align-items: center;
     gap: 50px;
     min-height: 90vh;
-    margin-block: 60px;
+    // margin-block: 60px;
     // background-color: lightsteelblue;
     > * {
         width: 80vw;
         height: 50vh;
+        margin-bottom: 100px;
     }
 }

@@ -1,15 +1,15 @@
 .contact-page {
     min-height: 90vh;
     // background-color: lightsteelblue;
-    margin-block: 30px;
+    // margin-block: 30px;
     // display: flex;
     // flex-direction: column;
     gap: 50px;
-  
     .add-search {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: 15px;
         a {
             display: flex;
             justify-content: center;

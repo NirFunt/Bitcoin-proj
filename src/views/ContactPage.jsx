@@ -28,7 +28,7 @@ class _ContactPage extends Component {
         const { contacts } = this.props;
         if (!contacts) return <div>Loading...</div>
         return (
-            <section className='contact-page main-layout'>
+            <section className='contact-page'>
                 <div className='add-search'>
                     <Link to={'/contact/edit'}><img className='add-btn' src={`https://findicons.com/files/icons/986/aeon/256/add.png`} /></Link>
                     <ContactFilter onChangeFilter={this.onChangeFilter} />

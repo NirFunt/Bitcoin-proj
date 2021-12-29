@@ -3,13 +3,13 @@
    justify-content: center;
    align-items: center;
    gap: 40px;
+   min-height: 90vh;
     section {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 50px;
-        min-height: 90vh;
     }
 
     // background-color: lightsteelblue;
