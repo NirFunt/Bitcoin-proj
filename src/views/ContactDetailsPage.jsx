@@ -1,15 +1,27 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { contactService } from '../services/contactService';
+import { userService } from '../services/userService';
+import { TransferFund } from '../cmps/TransferFund';
+import { MoveList } from '../cmps/MoveList';
 
-export class ContactDetailsPage extends Component {
+import { connect } from 'react-redux';
+import { getContactById } from '../store/actions/contactActions';
+
+ class _ContactDetailsPage extends Component {
 
     state = {
         contact: null,
-
+        loggedinUser: null,
     }
 
     async componentDidMount() {
+        const user = userService.getUser();
+        if (!user) {
+            this.props.history.push('/signup');
+            return;
+        }
+        this.setState({ loggedinUser: user })
         this.loadContact();
     }
 
@@ -20,30 +32,31 @@ export class ContactDetailsPage extends Component {
     }
 
     async loadContact() {
-        const contact = await contactService.getContactById(this.props.match.params.id);
-        this.setState({contact})
+        const contact =  await this.props.getContactById(this.props.match.params.id);
+        this.setState({ contact })
     }
 
 
     render() {
-        const { contact } = this.state;
-        if (!contact) return <div>Loading...</div>
+        const { contact, loggedinUser } = this.state;
+        if (!contact || !loggedinUser) return <div>Loading...</div>
         return (
             <section className='contact-details-page main-layout'>
-                <img src={`https://robohash.org/${contact._id}?set=set2`}/>
-                <h3>Name:  {contact.name} </h3>
-                <h3> Email: {contact.email} </h3>
-                <h3> Phone:  {contact.phone} </h3>
-                <h3> Coins:  {contact.coins} </h3>
-                <ul>
-                    {contact.moves.map((move, idx) =>
-                        <li key={move.createdAt + idx}>
-                            <p>{move.txt} : {new Date(move.createdAt).toLocaleDateString()}</p>
-                        </li>)}
-                </ul>
+                <img src={`https://robohash.org/${contact._id}?set=set2`} />
+                <h3> 🧍‍♂️ Name:  {contact.name} </h3>
+                <h3> 📩 Email: {contact.email} </h3>
+                <h3> 📞Phone:  {contact.phone} </h3>
+                <TransferFund contact={contact} addMove={userService.addMove} />
+                <MoveList loggedinUser={loggedinUser} contact={contact} />
                 <Link to={'/contact'}>Go Back</Link>
             </section>
         )
     }
 }
 
+
+const mapDispatchToProps = {
+    getContactById
+}
+
+export const ContactDetailsPage = connect(undefined, mapDispatchToProps)(_ContactDetailsPage)

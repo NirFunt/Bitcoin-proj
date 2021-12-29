@@ -5,9 +5,9 @@ export function AppHeader() {
     <div className="app-header">
       <div>LOGO</div>
       <div>
-        <NavLink to={'/'}>Home</NavLink> |
-        <NavLink to={'/contact'}>Contacts</NavLink> |
-        <NavLink to={'/chart'}>Charts</NavLink>
+        <NavLink activeClassName="link-active" exact to={'/'}>Home</NavLink> |
+        <NavLink activeClassName="link-active" to={'/contact'}>Contacts</NavLink> |
+        <NavLink activeClassName="link-active" to={'/chart'}>Charts</NavLink>
       </div>
     </div>
   );

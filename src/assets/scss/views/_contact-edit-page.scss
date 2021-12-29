@@ -11,5 +11,19 @@
         align-items: center;
         gap: 10px;
     }
+    input,select {
+        border-radius: 10px;
+        border: 1px blue solid;
+        padding: 5px 0px 5px 20px;
+    }
+    button {
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 5px 15px;
+        background-color: rgb(165, 165, 189);
+        &:hover {
+            background-color: rgb(122, 122, 177) ;
+        }
+    }
  
 }

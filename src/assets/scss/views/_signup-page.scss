@@ -1,0 +1,24 @@
+.signup-page {
+    form {
+        display: flex;
+        flex-direction: column;
+        min-height: 90vh;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        input {
+            padding : 5px
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: $clr1;
+            border: 2px solid coral;
+            cursor: pointer;
+        }
+    }
+    img {
+        width: 40%;
+    }
+
+}

@@ -7,6 +7,7 @@ import { ContactEditPage } from './views/ContactEditPage';
 import { ContactDetailsPage } from './views/ContactDetailsPage';
 import { AppFooter } from './cmps/AppFooter';
 import { ChartPage } from './views/ChartPage';
+import { SignupPage } from './views/SignupPage';
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
           <Route component={ContactDetailsPage} path={'/contact/:id'} />
           <Route component={ContactPage} path={'/contact'} />
           <Route component={ChartPage} path={'/chart'} />
+          <Route component={SignupPage} path={'/signup'}/>
           <Route component={HomePage} path={'/'} />
         </Switch>
         <AppFooter />

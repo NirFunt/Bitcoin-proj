@@ -9,6 +9,8 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        background: #079be00d;
+        box-shadow: -7px -7px 7px 0px #1ba8562b;
         a {
             display: flex;
             flex-direction: column;
@@ -21,9 +23,10 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        padding: 0px 50px;
-        background-color: $clr1;
+        padding: 10px 100px;
+        background-color: $clr3;
         transform: translateY(110%);
+        transition: transform .5s;
         button {
             background-color: $clr1;
             border: 0px solid $clr1;
