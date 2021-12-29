@@ -1,55 +1,37 @@
-import { Component } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { contactService } from '../services/contactService.js';
 import { ContactList } from '../cmps/ContactList';
 import { ContactFilter } from '../cmps/ContactFilter.jsx';
-import { connect } from 'react-redux';
 import { loadContacts, removeContact, setFilterBy } from '../store/actions/contactActions';
+import { useDispatch,useSelector } from 'react-redux';
 
-class _ContactPage extends Component {
+export const ContactPage = () => {
+    const dispatch = useDispatch();
+    const { contacts } = useSelector(state => state.contactModule)
 
-    state = {
+    useEffect ( ()=> {
+       dispatch(loadContacts());
+    },[])
+
+    const onRemoveContact = async (contactId) => {
+        dispatch(removeContact(contactId));
     }
 
-    componentDidMount() {
-        this.props.loadContacts();
+    const onChangeFilter = (filterBy) => {
+        dispatch(setFilterBy(filterBy));
+        dispatch(loadContacts());
     }
 
-    removeContact = async (contactId) => {
-        this.props.removeContact(contactId);
-    }
-
-    onChangeFilter = (filterBy) => {
-        this.props.setFilterBy(filterBy)
-        this.props.loadContacts()
-    }
-
-    render() {
-        const { contacts } = this.props;
         if (!contacts) return <div>Loading...</div>
         return (
             <section className='contact-page'>
                 <div className='add-search'>
                     <Link to={'/contact/edit'}><img className='add-btn' src={`https://findicons.com/files/icons/986/aeon/256/add.png`} /></Link>
-                    <ContactFilter onChangeFilter={this.onChangeFilter} />
+                    <ContactFilter onChangeFilter={onChangeFilter} />
                 </div>
-                <ContactList contacts={contacts} removeContact={this.removeContact} />
+                <ContactList contacts={contacts} removeContact={onRemoveContact} />
             </section>
         )
-    }
 }
 
 
-const mapStateToProps = state => {
-    return {
-        contacts: state.contactModule.contacts,
-    }
-}
-
-const mapDispatchToProps = {
-    loadContacts,
-    removeContact,
-    setFilterBy,
-}
-
-export const ContactPage = connect(mapStateToProps, mapDispatchToProps)(_ContactPage)

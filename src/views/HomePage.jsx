@@ -1,28 +1,24 @@
-import { Component } from 'react'
+import { useState,useEffect } from 'react'
 import { userService } from "../services/userService.js";
 import { BitcoinService } from '../services/BitcoinService.js';
 import { MoveList } from '../cmps/MoveList.jsx';
 
-export class HomePage extends Component {
+export const HomePage = (props) =>  {
 
-  state = {
-    user: null,
-    USDBitcoinRate: '',
-  }
+  const [user,setUser] = useState(null);
+  const [USDBitcoinRate,setUSDBitcoinRate] = useState('');
 
-  componentDidMount() {
+  useEffect( ()=> {
     const user = userService.getUser();
     if (!user) {
-      this.props.history.push('/signup');
+      props.history.push('/signup');
       return;
     }
-    else this.setState({ user });
+    else setUser (user );
     BitcoinService.getRate()
-      .then(res => this.setState({ USDBitcoinRate: res }))
-  }
+      .then(res => setUSDBitcoinRate( res ))
+  },[])
 
-  render() {
-    const { user, USDBitcoinRate } = this.state;
 
     if (!user) return <div>Loading...</div>
     return (
@@ -36,6 +32,5 @@ export class HomePage extends Component {
         <MoveList loggedinUser={user} contact ={null} />
       </section>
     )
-  }
 }
 

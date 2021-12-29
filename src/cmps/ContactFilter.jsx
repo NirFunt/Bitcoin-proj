@@ -1,33 +1,27 @@
-import { Component } from 'react'
+import { useState, useEffect } from 'react'
 
-export class ContactFilter extends Component {
+export const ContactFilter = (props) => {
 
-    state = {
-        term : '',
+    const [term, setTerm] = useState('');
+
+    useEffect(() => {
+        props.onChangeFilter(term);
+    }, [term])
+
+
+    const handleChange = (ev) => {
+        const { target } = ev;;
+        const field = target.name;
+        const value = target.type === 'number' ? +target.value : target.value;
+        setTerm({[field]:value});
     }
 
-    componentDidMount() {
-
-    }
-
-    handleChange = (ev) => {
-        console.log(ev);
-        const { target } = ev;
-        const field = target.name
-        const value = target.type === 'number' ? +target.value : target.value
-        this.setState({ [field]: value }, () => {
-            this.props.onChangeFilter(this.state)
-        })
-    }
-
-    render() {
-        return (
-            <section className='contact-filter'>
-                <label htmlFor='search'>Search</label>
-                <input type="text" name="term" id="search" onChange={this.handleChange} />
-            </section>
-        )
-    }
+    return (
+        <section className='contact-filter'>
+            <label htmlFor='search'>Search</label>
+            <input type="text" name="term" id="search" onChange={handleChange} />
+        </section>
+    )
 }
 
 

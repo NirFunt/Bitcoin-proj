@@ -1,19 +1,18 @@
-import { Component } from 'react'
+import { useState,useEffect } from 'react'
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-export class ChartAB extends Component {
-    state = {
-        avgBlockData: null,
-    }
+export const ChartAB = (props) => {
 
-    componentDidMount() {
-        this.setState({ avgBlockData: this.props.avgBlockData })
-    }
+    const [avgBlockData, setAvgBlockData] = useState(null);
 
-    options = {
+    useEffect ( ()=> {
+       setAvgBlockData(props.avgBlockData)
+    },[])
+
+    var options = {
         responsive: true,
         plugins: {
             legend: {
@@ -26,13 +25,13 @@ export class ChartAB extends Component {
         },
     };
 
-    get data() {
-        let avgBlockDataX = this.props.avgBlockData.values.reduce((acc, data, idx) => {
+    var data = () => {
+        let avgBlockDataX = props.avgBlockData.values.reduce((acc, data, idx) => {
             acc[idx] = new Date(data.x * 1000).toLocaleDateString();
             return acc;
         }, [])
 
-        let avgBlockDataY = this.props.avgBlockData.values.reduce((acc, data, idx) => {
+        let avgBlockDataY = props.avgBlockData.values.reduce((acc, data, idx) => {
             acc[idx] = data.y;
             return acc;
         }, [])
@@ -53,15 +52,13 @@ export class ChartAB extends Component {
         return data
     }
 
-    render() {
         return (
             <div className='chart-tv'>
                 <div className='chart-box'>
-                    <Line className='chart' options={this.options} data={this.data} />;
+                    <Line className='chart' options={options} data={data()} />;
                 </div>
             </div>
         )
-    }
 }
 
 

@@ -1,38 +1,31 @@
-import { Component } from 'react'
+import { useState, useEffect } from 'react'
 import { userService } from "../services/userService.js";
 
-export class SignupPage extends Component {
+export const  SignupPage = (props) => {
 
-    state = {
-        username: null,
-    }
+    const [username,setUsername] = useState(null);
 
-    componentDidMount() {
-    }
-
-    setUsername = (ev) => {
+  
+    const setttingUsername = (ev) => {
         const {target} = ev;
-        this.setState({username : target.value});
+        setUsername(target.value);
     }
 
-    signupUser = (ev) => {
+    const signupUser = (ev) => {
         ev.preventDefault();
-        userService.signup(this.state.username);
-        this.props.history.push('/');
+        userService.signup(username);
+        props.history.push('/');
     }
-
-    render() {
 
         return (
             <section className='signup-page main-layout'>
-                <form onSubmit={this.signupUser}>
+                <form onSubmit={signupUser}>
                     <img src='https://digitalcoinmarketcap.com/wp-content/uploads/2021/07/BITCOIN-PRICE.jpg' />
                     <label htmlFor='username'>Enter Your Username</label>
-                    <input type="text" id="username" name='username' onChange={this.setUsername} />
+                    <input type="text" id="username" name='username' onChange={setttingUsername} />
                     <button>Sign up</button>
                 </form>
             </section>
         )
     }
-}
 

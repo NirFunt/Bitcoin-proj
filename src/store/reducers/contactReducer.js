@@ -30,6 +30,7 @@ export function contactReducer(state = INITIAL_STATE, action) {
                 contacts: state.contacts.map(contact => contact._id === action.contact._id ? action.contact : contact)
             }
         case 'SET_FILTER_BY':
+            // console.log(action.filterBy)
             return {
                 ...state,
                 filterBy: {...action.filterBy}

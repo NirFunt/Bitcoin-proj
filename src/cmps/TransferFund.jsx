@@ -1,31 +1,22 @@
 
-import { Component } from 'react'
+import { useState, useEffect } from 'react'
 
-export class TransferFund extends Component {
+export const TransferFund = (props) => {
 
-    state = {
-        amount: null,
+    const [amount,setAmout] = useState(null);
+
+    const handleChange = ({ target }) => {
+        setAmout( target.value );
     }
 
-    componentDidMount() {
-
-    }
-
-    handleChange = ({ target }) => {
-        this.setState({ amount: target.value });
-    }
-
-    render() {
-        const { amount } = this.state;
         return (
             <div className="transfer-fund">
-                <h2>Transfer coins to {this.props.contact.name}: </h2>
+                <h2>Transfer coins to {props.contact.name}: </h2>
                 <label htmlFor='amount'>Amount:</label>
-                <input type="number" onChange={this.handleChange} id="amount" name='amount' />
-                <button onClick={() => this.props.addMove(this.props.contact, amount)}>Transfer</button>
+                <input type="number" onChange={handleChange} id="amount" name='amount' />
+                <button onClick={() => props.addMove(props.contact, amount)}>Transfer</button>
             </div>
         )
-    }
 }
 
 

@@ -1,19 +1,17 @@
-import { Component } from 'react'
+import { useState,useEffect } from 'react'
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement);
 
-export class ChartTV extends Component {
-    state = {
-        tradeVolumeData: null,
-    }
+export const ChartTV =(props) =>  {
+    const [tradeVolumeData, setTradeVolumeData] = useState(null);
 
-    componentDidMount() {
-        this.setState({ tradeVolumeData: this.props.tradeVolumeData })
-    }
+    useEffect( ()=> {
+       setTradeVolumeData(props.tradeVolumeData)
+    },[])
 
-    options = {
+    var options = {
         responsive: true,
         plugins: {
             legend: {
@@ -26,13 +24,13 @@ export class ChartTV extends Component {
         },
     };
 
-    get data() {
-        let tradeVolumeDataX = this.props.tradeVolumeData.values.reduce((acc, data, idx) => {
+    const getData= () => {
+        let tradeVolumeDataX = props.tradeVolumeData.values.reduce((acc, data, idx) => {
             acc[idx] = new Date(data.x * 1000).toLocaleDateString();
             return acc;
         }, [])
 
-        let tradeVolumeDataY = this.props.tradeVolumeData.values.reduce((acc, data, idx) => {
+        let tradeVolumeDataY = props.tradeVolumeData.values.reduce((acc, data, idx) => {
             acc[idx] = data.y;
             return acc;
         }, [])
@@ -51,17 +49,16 @@ export class ChartTV extends Component {
             ],
         };
         return data
+    
     }
 
-    render() {
         return (
             <div className='chart-tv'>
                 <div className='chart-box'>
-                    <Line className='chart' options={this.options} data={this.data} />;
+                    <Line className='chart' options={options} data={getData()} />;
                 </div>
             </div>
         )
-    }
 }
 
 
